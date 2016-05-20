@@ -8,22 +8,26 @@
 - 在`targetSdkVersion 23`以下时
 >对于权限主需要在安装时被询问一次,而且是批量处理的,对于客户而言一般都是很少仔细去看权限的风险内容,
 直接安装的,即使在对一些危险权限有红色提醒.但是惯性的操作也解决不了,安全问题.
-![image](https://github.com/06peng/relicea/blob/master/screeshots/device-2015-06-26-160956.png)
+
+![image](https://github.com/relice/RunTimePermisstion-master/blob/master/a.png)
 
 - 在`targetSdkVersion 23`以上时
 >对于危险权限是需要单独处理的,app在运行时只要接触了危险权限,就会弹窗提醒,询问用户是否授权.
-![image](https://github.com/06peng/reliceb/blob/master/screeshots/device-2015-06-26-160956.png)
+
+![image](https://github.com/relice/RunTimePermisstion-master/blob/master/b.png)
 
 - 权限管理
 >当然你也可以在`setting - apps - xxApp - permissions`中手动开启和关闭对应权限.
-![image](https://github.com/06peng/relice/blob/master/screeshots/device-2015-06-26-160956.png)
+
+![image](https://github.com/relice/RunTimePermisstion-master/blob/master/c.png)
 
 
 ####***6.0对权限的划分***
 在整个权限列表内,权限可以分为`normal,dangerous,special类型`其实special也属于`dangerous`类型,但是他的请求方式需要通过,
 隐式意图来处理,下面是微信权限和特殊权限的列表
 - dangerous permission(危险权限)
-![image](https://github.com/06peng/relice/blob/master/screeshots/device-2015-06-26-160956.png)
+
+![image](https://github.com/relice/RunTimePermisstion-master/blob/master/d.png)
 
 - special permission(特殊权限)
 需要通过隐式意图来开启
@@ -99,8 +103,8 @@ compileSdkVersion 23
         }
     }
 ```
-这是对运行时权限处理的Demo
-<p><a href="http://www.pexels.com/">http://www.pexels.com/</a>
+
+<p><a href="http://blog.csdn.net/relicemxd">更多信息可以反问blog ^_^</a>
 
 
 
