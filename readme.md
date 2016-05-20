@@ -45,7 +45,7 @@ google的更新主要归纳三点:性能的提示,信息的安全,规范的统�
 ###How?
 ####***什么时候会开启runtime permission？***
 - app的gradle配置要求` targetSdkVersion 23`
-```
+```gradle
 compileSdkVersion 23
     buildToolsVersion "23.0.2"
     defaultConfig {
@@ -56,26 +56,26 @@ compileSdkVersion 23
 
 - 清单文件配置
 只有在涉及到危险权限时才会弹窗运行时权限请求
-```
+```xml
  <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 ```
 
 ####***google对涉及到危险权限是怎么处理的呢.***
 - 检查当前 targetSdk是否大于等于23
-```
+```java
  private boolean isMNC() {
         return Build.VERSION.SDK_INT >= 23;
  }
 ```
 
 - 检查是否需要使用到 READ_PHONE_STATE 权限,如果清单有配置则弹窗询问授权
-```
+```java
   int state = ContextCompat.checkSelfPermission(this,
                     Manifest.permission.READ_PHONE_STATE);
 ```
 
 - 申请 READ_PHONE_STATE 权限
-```
+```java
  ActivityCompat.requestPermissions(this, new String[]{
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE
                                 , Manifest.permission.READ_PHONE_STATE},
@@ -83,7 +83,7 @@ compileSdkVersion 23
 ```
 
 - 请求运行时权限requestPermissions 回调
-```
+```java
  /**
      * 请求运行时权限requestPermissions 回调
      *
@@ -112,7 +112,7 @@ compileSdkVersion 23
 ####***使用第三方RxPermisstion 处理***
 - RxPermisstion处理方式
 批量处理
-```gradle
+```java
 RxPermissions.getInstance(this)
     .request(Manifest.permission.READ_PHONE_STATE//DO
             , Manifest.permission.READ_CONTACTS//DO
@@ -139,7 +139,7 @@ RxPermissions.getInstance(this)
 ```
 
 - 检查这些权限中,有哪些被拒绝,授权
-```
+```java
 RxPermissions.getInstance(this)
         .requestEach(Manifest.permission.READ_PHONE_STATE
                 , Manifest.permission.READ_CONTACTS
@@ -165,7 +165,7 @@ RxPermissions.getInstance(this)
 
 ###***在一些特殊权限下需要使用隐式询问授权***
 - 这些特殊权限也属于危险权限,但是他们的授权方式与运行时权限不一样需要使用隐式意图开授权.
-```
+```java
 //运行时权限所需求的弹窗,这边需要先开启运行弹窗权限
 @TargetApi(Build.VERSION_CODES.M)
 public static void requestAlertPermis(Context mcont, int requestCode) {
@@ -184,7 +184,7 @@ public static void requestSettingsPermis(Context mcont, int requestCode) {
 ```
 
 - 特殊权限的回调处理
-```
+```java
  @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
